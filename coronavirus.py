@@ -7,20 +7,17 @@ country = "Tunisia"
 notification_duration = 5
 refresh_time = 10 #minutes
 
-def data_cleanup(data):
-    for i in range(len(data)):
-        if data[i] == " " :
-            data[i] = "0"
-            continue
-        try:
-            while data[i][0] in ["+","-"," "]:
-                data[i] = data[i][1:]
-            if data[i][-1] == " " :
-                data[i] = data[i][:-1]
-                
-        except :
-            continue
-             
+def data_cleanup(array):
+    L = []
+    for i in array:
+        i = i.replace("+","")
+        i = i.replace("-","")
+        i = i.replace(",",".")
+        if i == "":
+            i = "0"
+        L.append(i.strip())
+    return L
+
 while True:
     html_page = requests.get("https://www.worldometers.info/coronavirus/")
     bs = BeautifulSoup(html_page.content, 'html.parser')
@@ -38,8 +35,7 @@ while True:
         except:
             data = data + ["0"]
     
-    data_cleanup(data)
-    data = [case.replace(',','.') for case in data]
+    data= data_cleanup(data)
     message = "Total infected = {}, New Case = {}, Total Deaths = {}, New Deaths = {}, Recovred = {}, Active Case = {}, Serious Critical = {}".format(*data)
    
    # message = "Total infected : {}, New Case : {}, Total Deaths : {}, New Deaths : {}, Recovred : {}, Active Case : {}, Serious Critical : {}".format(*data)
@@ -47,4 +43,3 @@ while True:
     toaster = ToastNotifier()
     toaster.show_toast("Coronavirus {}".format(country) , message, duration = notification_duration , icon_path ="icon.ico")
     time.sleep(refresh_time*60)
-    
