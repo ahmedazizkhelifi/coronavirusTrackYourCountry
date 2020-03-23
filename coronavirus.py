@@ -4,8 +4,10 @@ import time
 import requests
 
 country = "Tunisia"
-notification_duration = 5
+notification_duration = 10
 refresh_time = 10 #minutes
+worldmetersLink = "https://www.worldometers.info/coronavirus/"
+
 
 def data_cleanup(array):
     L = []
@@ -19,7 +21,11 @@ def data_cleanup(array):
     return L
 
 while True:
-    html_page = requests.get("https://www.worldometers.info/coronavirus/")
+    try:
+        html_page = requests.get(worldmetersLink)
+    except requests.exceptions.RequestException as e: 
+        print(e) #ConnectionError
+        continue
     bs = BeautifulSoup(html_page.content, 'html.parser')
 
     search = bs.select("div tbody tr td")
