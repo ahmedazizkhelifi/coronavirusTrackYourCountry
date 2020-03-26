@@ -1,5 +1,5 @@
 # Track Coronavirus in Your Country by Displaying Notifications Using Python
-Display Windows 10 notification with data for Coronavirus in your country.
+Display Windows 10 notification with coronavirus data of your country.
 
 ## Libraries 
 **win10toast:** Python library to display Windows 10 Toast Notifications.
