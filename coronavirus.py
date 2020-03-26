@@ -1,3 +1,5 @@
+#For informations check : https://towardsdatascience.com/coronavirus-track-coronavirus-in-your-country-by-displaying-notification-c914b5652088
+
 from win10toast import ToastNotifier
 from bs4 import BeautifulSoup
 import time
