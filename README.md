@@ -19,7 +19,7 @@ pip install requests
 For more inforamtions about the script you can check [this article](https://towardsdatascience.com/coronavirus-track-coronavirus-in-your-country-by-displaying-notification-c914b5652088).
 
 
-## Executables files: 
+## Executable file: 
 **Tunisia Version** -> No console. After the first notification (when you open the app), the next one will be displayed only if a value has been changed.
 
 **Rest of the World Version** -> With console. (same features)
